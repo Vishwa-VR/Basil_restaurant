@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basil — College Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap)" rel="stylesheet" />
+  <link rel="stylesheet" href="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)" />
+</head>
+<body>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-main">Basil</span>
+        <span class="logo-sub">Restaurant</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#crowd">Crowd Status</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#seats">Seats</a></li>
+      <li><a href="#token">My Token</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#admin" class="nav-admin">Admin</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge animate-in">🎓 SRM TRICHY College Campus</div>
+    <h1 class="hero-title animate-in delay-1">
+      Skip the Queue.<br/>
+      <span class="gradient-text">Order Smart.</span>
+    </h1>
+    <p class="hero-subtitle animate-in delay-2">
+      Pre-order your meal, track crowd levels, get a digital token,
+      and enjoy fresh food from Basil — without the wait.
+    </p>
+    <div class="hero-actions animate-in delay-3">
+      <button class="btn-primary" onclick="scrollTo('#menu')">
+        <i class="fas fa-utensils"></i> Order Now
+      </button>
+      <button class="btn-secondary" onclick="scrollTo('#crowd')">
+        <i class="fas fa-chart-bar"></i> Live Crowd
+      </button>
+    </div>
+    <div class="hero-stats animate-in delay-4">
+      <div class="stat"><span class="stat-num">2 min</span><span class="stat-label">Avg Wait</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Daily Orders</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">4.8 ⭐</span><span class="stat-label">Rating</span></div>
+    </div>
+  </div>
+  <div class="hero-visual animate-in delay-2">
+    <div class="food-orbit">
+      <div class="food-card-float fc1">🍛<span>Biryani</span></div>
+      <div class="food-card-float fc2">☕<span>Coffee</span></div>
+      <div class="food-card-float fc3">🥪<span>Sandwich</span></div>
+      <div class="food-card-float fc4">🍜<span>Noodles</span></div>
+      <div class="center-plate">
+        <div class="plate-ring"></div>
+        <div class="plate-emoji">🌿</div>
+        <div class="plate-label">Basil</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ FEATURES STRIP ═══════════════ -->
+<section class="features-strip">
+  <div class="feature-item">
+    <i class="fas fa-mobile-alt"></i>
+    <span>Pre-Order Online</span>
+  </div>
+  <div class="feature-item">
+    <i class="fas fa-ticket-alt"></i>
+    <span>Digital Token</span>
+  </div>
+  <div class="feature-item">
+    <i class="fas fa-users"></i>
+    <span>Live Crowd Status</span>
+  </div>
+  <div class="feature-item">
+    <i class="fas fa-chair"></i>
+    <span>Seat Availability</span>
+  </div>
+  <div class="feature-item">
+    <i class="fas fa-qrcode"></i>
+    <span>QR Ordering</span>
+  </div>
+</section>
+<!-- ═══════════════ CROWD STATUS ═══════════════ -->
+<section class="section" id="crowd">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">📡 Live Data</div>
+      <h2>Restaurant Crowd Status</h2>
+      <p>Know before you go — updated every 5 minutes</p>
+    </div>
+    <div class="crowd-dashboard">
+      <div class="crowd-main">
+        <div class="crowd-indicator" id="crowdIndicator">
+          <div class="crowd-pulse"></div>
+          <div class="crowd-level-display">
+            <span class="crowd-emoji" id="crowdEmoji">🟡</span>
+            <span class="crowd-label" id="crowdLabel">Medium Crowd</span>
+          </div>
+          <div class="crowd-meter">
+            <div class="crowd-bar" id="crowdBar"></div>
+          </div>
+          <div class="crowd-percentage" id="crowdPercentage">65%</div>
+        </div>
+        <div class="crowd-info-card">
+          <div class="best-time">
+            <i class="fas fa-clock"></i>
+            <div>
+              <span class="best-time-label">Best time to visit</span>
+              <span class="best-time-value" id="bestTime">2:00 PM – 3:00 PM</span>
+            </div>
+          </div>
+          <div class="crowd-tip" id="crowdTip">
+            Moderate crowd — ordering online recommended to skip the queue.
+          </div>
+        </div>
+      </div>
+      <div class="crowd-timeline">
+        <h3>Today's Crowd Forecast</h3>
+        <div class="timeline-grid">
+          <div class="tl-item"><span class="tl-time">8 AM</span><div class="tl-bar low" style="height:30%"></div><span class="tl-tag low">Low</span></div>
+          <div class="tl-item"><span class="tl-time">9 AM</span><div class="tl-bar med" style="height:55%"></div><span class="tl-tag med">Med</span></div>
+          <div class="tl-item"><span class="tl-time">10 AM</span><div class="tl-bar low" style="height:25%"></div><span class="tl-tag low">Low</span></div>
+          <div class="tl-item"><span class="tl-time">12 PM</span><div class="tl-bar high" style="height:95%"></div><span class="tl-tag high">High</span></div>
+          <div class="tl-item"><span class="tl-time">1 PM</span><div class="tl-bar high" style="height:90%"></div><span class="tl-tag high">High</span></div>
+          <div class="tl-item"><span class="tl-time">2 PM</span><div class="tl-bar low" style="height:20%"></div><span class="tl-tag low">Low</span></div>
+          <div class="tl-item"><span class="tl-time">3 PM</span><div class="tl-bar low" style="height:15%"></div><span class="tl-tag low">Low</span></div>
+          <div class="tl-item"><span class="tl-time">4 PM</span><div class="tl-bar med" style="height:60%"></div><span class="tl-tag med">Med</span></div>
+          <div class="tl-item"><span class="tl-time">5 PM</span><div class="tl-bar med" style="height:50%"></div><span class="tl-tag med">Med</span></div>
+          <div class="tl-item"><span class="tl-time">6 PM</span><div class="tl-bar low" style="height:30%"></div><span class="tl-tag low">Low</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="crowd-legend">
+      <div class="legend-item"><span class="dot green"></span> Low (under 40%)</div>
+      <div class="legend-item"><span class="dot yellow"></span> Medium (40–70%)</div>
+      <div class="legend-item"><span class="dot red"></span> High (above 70%)</div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ MENU ═══════════════ -->
+<section class="section bg-alt" id="menu">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">🍽️ Fresh Daily</div>
+      <h2>Our Menu</h2>
+      <p>Select a category and add items to your cart</p>
+    </div>
+    <!-- Pickup Slot -->
+    <div class="pickup-banner">
+      <div class="pickup-icon"><i class="fas fa-clock"></i></div>
+      <div class="pickup-info">
+        <strong>Pre-Order & Pickup Slot</strong>
+        <span>Choose your pickup time to skip the queue</span>
+      </div>
+      <select class="slot-select" id="pickupSlot">
+        <option value="">— Select Pickup Time —</option>
+        <option>11:00 AM – 11:15 AM</option>
+        <option>11:15 AM – 11:30 AM</option>
+        <option>12:00 PM – 12:15 PM</option>
+        <option>12:15 PM – 12:30 PM</option>
+        <option>12:30 PM – 12:45 PM</option>
+        <option>01:00 PM – 01:15 PM</option>
+        <option>01:15 PM – 01:30 PM</option>
+        <option>04:00 PM – 04:15 PM</option>
+        <option>04:15 PM – 04:30 PM</option>
+        <option>05:00 PM – 05:15 PM</option>
+      </select>
+      <div class="prep-time" id="prepTimeDisplay" style="display:none;">
+        <i class="fas fa-fire-alt"></i> Est. prep: <strong>10–15 min</strong>
+      </div>
+    </div>
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <button class="cat-tab active" onclick="filterMenu('all', this)">🍽️ All</button>
+      <button class="cat-tab" onclick="filterMenu('breakfast', this)">🌅 Breakfast</button>
+      <button class="cat-tab" onclick="filterMenu('lunch', this)">☀️ Lunch</button>
+      <button class="cat-tab" onclick="filterMenu('snacks', this)">🍟 Snacks</button>
+      <button class="cat-tab" onclick="filterMenu('drinks', this)">🥤 Drinks</button>
+    </div>
+    <!-- Menu Grid -->
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+<!-- ═══════════════ CART SIDEBAR ═══════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag"></i> Your Order</h3>
+    <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-slot-info" id="cartSlotInfo"></div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div class="empty-icon">🛒</div>
+      <p>Your cart is empty</p>
+      <span>Add items from the menu</span>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <div class="cart-gst">
+      <span>GST (5%)</span>
+      <span id="cartGST">₹0</span>
+    </div>
+    <div class="cart-grand">
+      <span>Grand Total</span>
+      <span id="cartGrand">₹0</span>
+    </div>
+    <button class="btn-primary full-width" onclick="placeOrder()">
+      <i class="fas fa-check-circle"></i> Confirm Order
+    </button>
+  </div>
+</div>
+<!-- ═══════════════ SEAT AVAILABILITY ═══════════════ -->
+<section class="section" id="seats">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">💺 Real-time</div>
+      <h2>Seat Availability</h2>
+      <p>Check available seats before you arrive</p>
+    </div>
+    <div class="seats-dashboard">
+      <div class="seats-summary">
+        <div class="seat-stat available">
+          <i class="fas fa-chair"></i>
+          <span class="seat-num" id="availSeats">18</span>
+          <span>Available</span>
+        </div>
+        <div class="seat-stat occupied">
+          <i class="fas fa-user"></i>
+          <span class="seat-num" id="occupiedSeats">22</span>
+          <span>Occupied</span>
+        </div>
+        <div class="seat-stat waiting">
+          <i class="fas fa-hourglass-half"></i>
+          <span class="seat-num" id="waitingSeats">5</span>
+          <span>Waiting</span>
+        </div>
+      </div>
+      <div class="seat-map">
+        <div class="seat-map-header">
+          <span>Seating Map — <strong id="seatStatusLabel">Seats Available</strong></span>
+          <button class="btn-small" onclick="refreshSeats()"><i class="fas fa-sync-alt"></i> Refresh</button>
+        </div>
+        <div class="seat-grid" id="seatGrid"></div>
+        <div class="seat-legend">
+          <span><span class="seat-dot avail"></span>Available</span>
+          <span><span class="seat-dot occ"></span>Occupied</span>
+          <span><span class="seat-dot res"></span>Reserved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ QR SECTION ═══════════════ -->
+<section class="section bg-alt" id="qr">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">📱 Contactless</div>
+      <h2>QR Code Ordering</h2>
+      <p>Scan, order, and pick up — no counter, no queue</p>
+    </div>
+    <div class="qr-layout">
+      <div class="qr-steps">
+        <div class="qr-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Scan the QR Code</h4>
+            <p>Each table and counter has a unique QR code. Just open your camera and scan.</p>
+          </div>
+        </div>
+        <div class="qr-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Browse & Order</h4>
+            <p>The full menu opens on your phone. Pick items, customize, and add to cart instantly.</p>
+          </div>
+        </div>
+        <div class="qr-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Pay & Get Token</h4>
+            <p>Confirm your order and receive a digital token. Track status in real time.</p>
+          </div>
+        </div>
+        <div class="qr-step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Pick Up When Ready</h4>
+            <p>When your token is called, collect your meal — no waiting at the counter at all.</p>
+          </div>
+        </div>
+      </div>
+      <div class="qr-display">
+        <div class="qr-card">
+          <div class="qr-code-box" id="qrBox">
+            <div class="qr-inner">
+              <div class="qr-pattern">
+                <div class="qr-corner tl"></div>
+                <div class="qr-corner tr"></div>
+                <div class="qr-corner bl"></div>
+                <div class="qr-dots"></div>
+              </div>
+              <div class="qr-logo">🌿</div>
+            </div>
+          </div>
+          <div class="qr-card-info">
+            <strong>Basil SmartServe</strong>
+            <span>Table QR — Scan to order</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ TOKEN SYSTEM ═══════════════ -->
+<section class="section" id="token">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">🎫 Your Queue</div>
+      <h2>Digital Token System</h2>
+      <p>Track your order status without standing in line</p>
+    </div>
+    <div class="token-dashboard" id="tokenDashboard">
+      <div class="token-empty-state" id="tokenEmpty">
+        <div class="token-empty-icon">🎫</div>
+        <h3>No Active Token</h3>
+        <p>Place an order from the menu to get your digital token</p>
+        <button class="btn-primary" onclick="scrollTo('#menu')">
+          <i class="fas fa-utensils"></i> Go to Menu
+        </button>
+      </div>
+      <div class="token-active" id="tokenActive" style="display:none;">
+        <div class="token-card">
+          <div class="token-number-display">
+            <span class="token-prefix">Token</span>
+            <span class="token-num" id="tokenNumber">#042</span>
+          </div>
+          <div class="token-status-track">
+            <div class="track-step done" id="step1">
+              <div class="track-dot"><i class="fas fa-check"></i></div>
+              <span>Order Placed</span>
+            </div>
+            <div class="track-line" id="line1"></div>
+            <div class="track-step" id="step2">
+              <div class="track-dot"><i class="fas fa-fire-alt"></i></div>
+              <span>Preparing</span>
+            </div>
+            <div class="track-line" id="line2"></div>
+            <div class="track-step" id="step3">
+              <div class="track-dot"><i class="fas fa-bell"></i></div>
+              <span>Ready for Pickup</span>
+            </div>
+          </div>
+          <div class="token-message" id="tokenMessage">
+            Your order is being prepared. Estimated time: <strong>8 minutes</strong>
+          </div>
+        </div>
+        <div class="queue-display">
+          <h4>Queue Status</h4>
+          <div class="queue-tokens" id="queueTokens"></div>
+          <p class="queue-note">Tokens ahead of you: <strong id="tokensAhead">3</strong></p>
+        </div>
+        <div class="token-items" id="tokenItems"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ FEEDBACK ═══════════════ -->
+<section class="section bg-alt" id="feedback">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">⭐ Reviews</div>
+      <h2>Feedback & Ratings</h2>
+      <p>Help us serve you better</p>
+    </div>
+    <div class="feedback-layout">
+      <div class="feedback-form-area">
+        <div class="feedback-card">
+          <h3>Share Your Experience</h3>
+          <div class="rating-selector">
+            <span>Overall Rating</span>
+            <div class="stars" id="ratingStars">
+              <i class="fas fa-star" data-val="1" onclick="setRating(1)"></i>
+              <i class="fas fa-star" data-val="2" onclick="setRating(2)"></i>
+              <i class="fas fa-star" data-val="3" onclick="setRating(3)"></i>
+              <i class="fas fa-star" data-val="4" onclick="setRating(4)"></i>
+              <i class="fas fa-star" data-val="5" onclick="setRating(5)"></i>
+            </div>
+          </div>
+          <div class="dish-rating">
+            <span>Rate a Dish</span>
+            <select class="slot-select" id="dishSelect">
+              <option value="">— Select Dish —</option>
+              <option>Chicken Biryani</option>
+              <option>Masala Dosa</option>
+              <option>Veg Noodles</option>
+              <option>Cold Coffee</option>
+              <option>Paneer Roll</option>
+              <option>Samosa</option>
+            </select>
+          </div>
+          <input type="text" class="feedback-input" id="feedbackName" placeholder="Your Name (optional)" />
+          <textarea class="feedback-input" id="feedbackText" rows="4" placeholder="Tell us about your experience..."></textarea>
+          <button class="btn-primary full-width" onclick="submitFeedback()">
+            <i class="fas fa-paper-plane"></i> Submit Feedback
+          </button>
+          <div class="feedback-success" id="feedbackSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i> Thanks for your feedback!
+          </div>
+        </div>
+      </div>
+      <div class="feedback-reviews">
+        <h3>Popular Dishes</h3>
+        <div class="popular-dishes" id="popularDishes"></div>
+        <h3 style="margin-top:2rem;">Recent Reviews</h3>
+        <div class="reviews-list" id="reviewsList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ ADMIN DASHBOARD ═══════════════ -->
+<section class="section" id="admin">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">⚙️ Admin Panel</div>
+      <h2>Admin Dashboard</h2>
+      <p>Restaurant management at a glance</p>
+    </div>
+    <div class="admin-grid">
+      <!-- Stats -->
+      <div class="admin-stats">
+        <div class="admin-stat-card">
+          <i class="fas fa-receipt"></i>
+          <div>
+            <span class="astat-num" id="totalOrders">24</span>
+            <span class="astat-label">Total Orders Today</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <i class="fas fa-fire-alt"></i>
+          <div>
+            <span class="astat-num" id="pendingOrders">5</span>
+            <span class="astat-label">Pending Orders</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <i class="fas fa-rupee-sign"></i>
+          <div>
+            <span class="astat-num" id="todayRevenue">₹4,820</span>
+            <span class="astat-label">Today's Revenue</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <i class="fas fa-star"></i>
+          <div>
+            <span class="astat-num">4.7</span>
+            <span class="astat-label">Avg Rating</span>
+          </div>
+        </div>
+      </div>
+      <!-- Crowd Control -->
+      <div class="admin-panel">
+        <h4><i class="fas fa-users"></i> Update Crowd Status</h4>
+        <div class="crowd-controls">
+          <button class="crowd-btn low-btn" onclick="adminSetCrowd('low')">🟢 Set Low</button>
+          <button class="crowd-btn med-btn" onclick="adminSetCrowd('medium')">🟡 Set Medium</button>
+          <button class="crowd-btn high-btn" onclick="adminSetCrowd('high')">🔴 Set High</button>
+        </div>
+      </div>
+      <!-- Order Management -->
+      <div class="admin-panel full-span">
+        <h4><i class="fas fa-list"></i> Live Orders</h4>
+        <div class="admin-orders" id="adminOrders"></div>
+      </div>
+      <!-- Menu Management -->
+      <div class="admin-panel">
+        <h4><i class="fas fa-edit"></i> Quick Menu Update</h4>
+        <div class="menu-update-form">
+          <input type="text" class="feedback-input" id="newItemName" placeholder="Item name" />
+          <input type="number" class="feedback-input" id="newItemPrice" placeholder="Price (₹)" />
+          <select class="slot-select" id="newItemCat">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="snacks">Snacks</option>
+            <option value="drinks">Drinks</option>
+          </select>
+          <button class="btn-primary full-width" onclick="adminAddItem()">
+            <i class="fas fa-plus"></i> Add Item
+          </button>
+          <div class="admin-success" id="adminSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i> Item added to menu!
+          </div>
+        </div>
+      </div>
+      <!-- Feedback View -->
+      <div class="admin-panel">
+        <h4><i class="fas fa-comments"></i> Recent Feedback</h4>
+        <div class="admin-feedback" id="adminFeedback">
+          <div class="afb-item"><span class="afb-stars">⭐⭐⭐⭐⭐</span><p>"The biryani is amazing!"</p><small>— Divya Dharshini</small></div>
+          <div class="afb-item"><span class="afb-stars">⭐⭐⭐⭐</span><p>"Fast service, great food."</p><small>— Rohini.</small></div>
+          <div class="afb-item"><span class="afb-stars">⭐⭐⭐⭐⭐</span><p>"Digital token is super convenient!"</p><small>— Vasanth Kumar</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="logo">
+        <img src="logo.png" alt="Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">Basil</span>
+          <span class="logo-sub">SmartServe</span>
+        </div>
+      </div>
+      <p>Reducing campus wait times with smart digital ordering technology.</p>
+      <div class="footer-socials">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>Quick Links</h5>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#crowd">Crowd Status</a>
+      <a href="#seats">Seats</a>
+      <a href="#feedback">Feedback</a>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <span><i class="fas fa-map-marker-alt"></i> dept of CyberSecurity</span>
+      <span><i class="fas fa-phone"></i> 9363543302</span>
+      <span><i class="fas fa-envelope"></i> basil@srm.edu</span>
+    </div>
+    <div class="footer-links">
+      <h5>Hours</h5>
+      <span>Mon – Fri: 8 AM – 7 PM</span>
+      <span>Saturday: 9 AM – 5 PM</span>
+      <span>Sunday: Closed</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Basil SmartServe — Vishwa.K CSE w/s in CyberSecurity</span>
+    <span>Built with ❤️ to solve real campus problems</span>
+  </div>
+</footer>
+<!-- ═══════════════ ORDER SUCCESS MODAL ═══════════════ -->
+<div class="modal-overlay" id="orderModal" style="display:none;">
+  <div class="modal">
+    <div class="modal-icon success-bounce">🎉</div>
+    <h2>Order Confirmed!</h2>
+    <div class="modal-token">
+      <span>Your Token</span>
+      <strong id="modalToken">#042</strong>
+    </div>
+    <div class="modal-slot" id="modalSlot"></div>
+    <p>We'll notify you when your order is ready for pickup.</p>
+    <button class="btn-primary full-width" onclick="closeModal()">Track Order</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
